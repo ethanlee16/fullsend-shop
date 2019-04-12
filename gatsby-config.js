@@ -5,6 +5,18 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    {
+      resolve: `gatsby-source-airtable`,
+      options: {
+        tables: [
+          {
+            baseId: `appYDeGxhK1CzEJt8`,
+            tableName: `Products`,
+            mapping: { Images: "fileNode" },
+          },
+        ],
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
