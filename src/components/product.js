@@ -10,17 +10,20 @@ const ProductCard = ({ product }) => {
   } = product
 
   let cart
-  try {
-    cart = JSON.parse(localStorage.getItem("cart"))
-    if (!cart) {
-      throw new Error()
-    }
-  } catch (e) {
-    cart = { [recordId]: 0 }
-    localStorage.setItem("cart", JSON.stringify(cart))
-  }
 
-  const prevQuantity = cart[recordId] || 0
+  useEffect(() => {
+    try {
+      cart = JSON.parse(localStorage.getItem("cart"))
+      if (!cart) {
+        throw new Error()
+      }
+    } catch (e) {
+      cart = { [recordId]: 0 }
+      localStorage.setItem("cart", JSON.stringify(cart))
+    }
+  }, [])
+
+  const prevQuantity = (cart && cart[recordId]) || 0
   const [quantity, setQuantity] = useState(prevQuantity)
   useEffect(() => {
     cart = JSON.parse(localStorage.getItem("cart"))
