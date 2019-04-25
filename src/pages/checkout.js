@@ -29,10 +29,10 @@ const Checkout = ({
       <Layout>
         <SEO title="Something went wrong" />
         <div>
-          <h1>Our shops are closed 😢</h1>
+          <h1>Shattuck Market is temporarily closed</h1>
           <p className="gray">
-            We received your order, but our shop is closed right now. We'll text
-            you when we can fulfill your order.
+            We received your order, but Shattuck Market is closed for deliveries
+            right now. We'll text you when we can fulfill your order.
           </p>
         </div>
       </Layout>
