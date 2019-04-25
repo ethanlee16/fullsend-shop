@@ -22,6 +22,10 @@ const Checkout = ({
     return matches.shift().node.data
   }
   const nonEmptyCart = Object.keys(cart).filter(rid => cart[rid])
+  const price = nonEmptyCart.reduce(
+    (total, rid) => total + findRecForId(rid).Price * cart[rid],
+    0
+  )
   let firstAvailDate = false
 
   if (finished) {
@@ -73,15 +77,7 @@ const Checkout = ({
       </div>
       <div className="flex justify-between mv2">
         <h3>Total</h3>
-        <h3>
-          $
-          {(
-            nonEmptyCart.reduce(
-              (total, rid) => total + findRecForId(rid).Price * cart[rid],
-              0
-            ) + 1
-          ).toFixed(2)}
-        </h3>
+        <h3>${(price + 1).toFixed(2)}</h3>
       </div>
       <h1>Delivery</h1>
       <form
@@ -161,8 +157,8 @@ const Checkout = ({
                 </option>
               )
             })}
-            <option value="asap">
-              As soon as possible (within 30 minutes, extra $9)
+            <option value="asap" disabled={price < 20}>
+              Within 30 minutes (minimum $20 order, +$6 delivery fee)
             </option>
           </select>
         </div>
