@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import Img from "gatsby-image"
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onCartUpdate }) => {
   const {
     node: {
       recordId,
@@ -30,6 +30,7 @@ const ProductCard = ({ product }) => {
     cart = JSON.parse(localStorage.getItem("cart"))
     cart[recordId] = quantity
     localStorage.setItem("cart", JSON.stringify(cart))
+    onCartUpdate()
   }, [quantity])
 
   return (
@@ -48,7 +49,7 @@ const ProductCard = ({ product }) => {
                 />
               )
           )}
-      <div className="pa2 ph3-ns pb3-ns">
+      <div className="pa2 ph3-ns pb3-ns w-100">
         <div className="dt w-100 mv2">
           <div className="dtc tc">
             <h1 className="f5 f5-ns mv0">{Name}</h1>
