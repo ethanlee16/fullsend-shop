@@ -64,7 +64,7 @@ const IndexPage = ({
         </div>
       ) : null}
 
-      <div className="cf flex flex-wrap justify-around">
+      <div className="cf flex flex-wrap justify-center">
         {products.map(prod => (
           <ProductCard
             key={prod.node.recordId}
@@ -95,7 +95,6 @@ export const query = graphql`
                 childImageSharp {
                   fixed(height: 100) {
                     base64
-                    tracedSVG
                     aspectRatio
                     width
                     height

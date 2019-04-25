@@ -59,7 +59,7 @@ const Checkout = ({
       />
       <h1>Checkout</h1>
       {nonEmptyCart.map(rid => (
-        <div className="flex justify-between mb1 items-center">
+        <div className="flex justify-between mb1 items-center" key={rid}>
           <p className="mv0">
             <span className="b mr1">{cart[rid]}</span>
             {findRecForId(rid).Name}
@@ -151,7 +151,12 @@ const Checkout = ({
                 selected = true
               }
               return (
-                <option value={time} disabled={hasPassed} selected={selected}>
+                <option
+                  value={time}
+                  key={time}
+                  disabled={hasPassed}
+                  selected={selected}
+                >
                   {time}
                 </option>
               )
@@ -166,9 +171,9 @@ const Checkout = ({
             Confirm order
           </button>
           <Link to="/">
-            <a className="f6 link dim br2 ph3 pv2 mb2 dib white bg-navy tc">
+            <button className="f6 link dim br2 ph3 pv2 mb2 dib white bg-navy tc">
               Edit cart
-            </a>
+            </button>
           </Link>
         </div>
       </form>

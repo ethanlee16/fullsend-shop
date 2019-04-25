@@ -53,12 +53,12 @@ const ProductCard = ({ product, onCartUpdate }) => {
         <div className="dt w-100 mv2">
           <div className="dtc tc">
             <h1 className="f5 f5-ns mv0">{Name}</h1>
-            <h2 className="f6 mv1 mid-gray">${Price}</h2>
+            <h2 className="f6 mv1 mid-gray">${Price.toFixed(2)}</h2>
           </div>
         </div>
         {quantity === 0 ? (
           <a
-            className="f6 link dim br2 ph3 pv2 mb2 dib white bg-navy w-100 tc"
+            className="f6 link dim br2 ph3 pv2 mb2 dib white bg-navy w-100 tc shadow-hover"
             onClick={() => setQuantity(quantity + 1)}
           >
             Add to cart
@@ -66,14 +66,14 @@ const ProductCard = ({ product, onCartUpdate }) => {
         ) : (
           <div className="flex items-center justify-center">
             <a
-              className="db link br2 ph3 pv2 white bg-navy b dim"
+              className="db link br2 ph3 pv2 white bg-navy b dim shadow-hover"
               onClick={() => setQuantity(quantity - 1)}
             >
               -
             </a>
             <h2 className="f6 w-50 tc">{quantity} added</h2>
             <a
-              className="db link br2 ph3 pv2 white bg-navy b dim"
+              className="db link br2 ph3 pv2 white bg-navy b dim shadow-hover"
               onClick={() => setQuantity(quantity + 1)}
             >
               +
