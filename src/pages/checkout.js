@@ -43,6 +43,13 @@ const Checkout = ({
     )
   }
 
+  const hasPassed = moment().isAfter(
+    moment()
+      .hour(17)
+      .minute(0)
+      .second(0)
+  )
+
   return (
     <Layout>
       <SEO title="Checkout" />
@@ -137,10 +144,10 @@ const Checkout = ({
         <div className="measure">
           <label className="f6 b db mb1">Delivery time</label>
           <select className="ba b--black-20 pa2 mb2 db w-100" id="time">
-            {["7:00 PM", "8:00 PM", "9:00 PM", ,].map(time => {
-              const hasPassed = !moment().isBefore(
-                `${new Date().toLocaleDateString()} ${time}`
-              )
+            {["7:00 PM", "8:00 PM", "9:00 PM"].map(time => {
+              // const hasPassed = !moment()
+              //   .add(2, "hours")
+              //   .isBefore(`${new Date().toLocaleDateString()} ${time}`)
               let selected = false
               if (!firstAvailDate && !hasPassed) {
                 firstAvailDate = true
@@ -157,10 +164,25 @@ const Checkout = ({
                 </option>
               )
             })}
+            {hasPassed
+              ? [
+                  "7:00 PM (tomorrow)",
+                  "8:00 PM (tomorrow)",
+                  "9:00 PM (tomorrow)",
+                ].map(time => (
+                  <option value={time} key={time}>
+                    {time}
+                  </option>
+                ))
+              : null}
             <option value="asap" disabled={price < 20}>
               Within 30 minutes (minimum $20 order, +$6 delivery fee)
             </option>
           </select>
+          <small className="f6 black-60 db mb3">
+            Orders placed before 5 PM are eligible for same-day delivery. Orders
+            placed after 5 PM will be delivered the next day.
+          </small>
         </div>
         <div className="flex mt4">
           <button className="f6 link dim br2 ph3 pv2 mb2 dib white bg-green tc mr2 shadow-hover">
