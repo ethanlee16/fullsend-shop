@@ -117,7 +117,6 @@ const Layout = ({ children }) => (
                 }
                 g.clearUserCookie = function() {}
               })(window, document, window["_fs_namespace"], "script", "user")
-            })
             `,
           }}
         />
