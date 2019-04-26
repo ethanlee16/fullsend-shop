@@ -5,16 +5,11 @@ import ProductCard from "../components/product"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-import loadFullstory from "../utils/fullstory"
-
 const IndexPage = ({
   data: {
     allAirtable: { edges: products },
   },
 }) => {
-  useEffect(() => {
-    loadFullstory()
-  }, [])
   const [cart, setCart] = useState({})
 
   const findRecForId = id => {
@@ -90,6 +85,7 @@ export const query = graphql`
           data {
             Price
             Name
+            Description
             Images {
               localFiles {
                 childImageSharp {

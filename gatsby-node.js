@@ -5,3 +5,12 @@
  */
 
 // You can delete this file if you're not using it
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage } = actions
+
+  if (page.path.match(/^\/product/)) {
+    page.matchPath = "/product/:id"
+
+    createPage(page)
+  }
+}
